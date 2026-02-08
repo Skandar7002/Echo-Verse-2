@@ -1,24 +1,23 @@
-EchoVerse phas-2
+EchoVerse phase-2    https://github.com/Skandar7002/Echo-Verse-2
+
 یک سیستم گراف ‌محور برای یافتن بهینه‌ترین توالی گوش دادن پادکست‌ها
 
 هدف پروژه:
 
 طراحی و پیاده‌سازی سیستمی که با استفاده از تئوری گراف‌ها، کوتاه‌ترین و بهینه‌ترین مسیر را برای گوش دادن به مجموعه‌ای از پادکست‌ها پیشنهاد دهد.
 
-معماری سیستم
-
-1. مدل مفهومی
+ مدل مفهومی
 - پادکست‌ها = رأس‌های گراف (Vertices)
 - ارتباط موضوعی/ذهنی بین پادکست‌ها = یال‌های وزن‌دار (Weighted Edges)
 - وزن یال = هزینه جابجایی ذهنی یا میزان شباهت موضوعی
 
-2. ساختار داده‌ها
+ساختار داده‌
 کلاس Graph:
 - ماتریس مجاورت (Adjacency Matrix)
 - تعداد رأس‌ها (Vertex Count)
 - حداکثر ظرفیت (Max Capacity)
 
-3. الگوریتم اصلی
+الگوریتم اصلی
 
 - الگوریتم دایکسترا (Dijkstra's Algorithm)
 - پیچیدگی زمانی: O(V²) (با ماتریس مجاورت)
@@ -60,36 +59,35 @@ EchoVerse phas-2
 
 گراف ایجاد شده:
 
-- addEdge(0, 1, 2);  // برنامه‌نویسی → ساختمان داده
-- addEdge(1, 2, 1);  // ساختمان داده → الگوریتم‌ها
-- addEdge(2, 3, 3);  // الگوریتم‌ها → هوش مصنوعی
-- addEdge(3, 4, 2);  // هوش مصنوعی → یادگیری ماشین
-- addEdge(4, 5, 1);  // یادگیری ماشین → شبکه‌های عصبی
-- addEdge(0, 2, 4);  // ارتباط مستقیم
-- addEdge(1, 3, 5);  // ارتباط جایگزین
+      addEdge(0, 1, 2);  // برنامه‌نویسی → ساختمان داده
+      addEdge(1, 2, 1);  // ساختمان داده → الگوریتم‌ها
+      addEdge(2, 3, 3);  // الگوریتم‌ها → هوش مصنوعی
+      addEdge(3, 4, 2);  // هوش مصنوعی → یادگیری ماشین
+      addEdge(4, 5, 1);  // یادگیری ماشین → شبکه‌های عصبی
+      addEdge(0, 2, 4);  // ارتباط مستقیم
+      addEdge(1, 3, 5);  // ارتباط جایگزین
 
 رابط کاربری با منوی تعاملی:
 
-=== Podcast Listening Path Optimizer ===
-1. Add Podcast
-2. Add Connection Between Podcasts
-3. Find Shortest Listening Paths
-4. Auto Test
-5. Exit
-
-   Choice: _
+      === Podcast Listening Path Optimizer ===
+      1. Add Podcast
+      2. Add Connection Between Podcasts
+      3. Find Shortest Listening Paths
+      4. Auto Test
+      5. Exit
+      Choice: _
 
 نمونه خروجی:
 
 Shortest paths from Podcast 0:
-----------------------------------------
-To Podcast | Distance | Path
-----------------------------------------
-     1     |    2     | 0 -> 1
-     2     |    3     | 0 -> 1 -> 2
-     3     |    6     | 0 -> 1 -> 2 -> 3
-     4     |    8     | 0 -> 1 -> 2 -> 3 -> 4
-     5     |    9     | 0 -> 1 -> 2 -> 3 -> 4 -> 5
+   
+    To Podcast | Distance | Path
+
+         1     |    2     | 0 -> 1
+         2     |    3     | 0 -> 1 -> 2
+         3     |    6     | 0 -> 1 -> 2 -> 3
+         4     |    8     | 0 -> 1 -> 2 -> 3 -> 4
+         5     |    9     | 0 -> 1 -> 2 -> 3 -> 4 -> 5
 
 مراحل الگوریتم دایکسترا:
 
@@ -105,15 +103,14 @@ To Podcast | Distance | Path
 
 پیاده سازی الگوریتم دایکسترا:
 
-void Graph::dijkstra(int source) {
+      void Graph::dijkstra(int source) {
+                                                 
+      // آرایه‌های کمکی
+      int* distances = new int[vertexCount];
 
-// آرایه‌های کمکی
+      bool* visited = new bool[vertexCount];
 
-int* distances = new int[vertexCount];
-
-bool* visited = new bool[vertexCount];
-
-int* parents = new int[vertexCount];
+      int* parents = new int[vertexCount];
 
     // مقداردهی اولیه
     for (int i = 0; i < vertexCount; i++) {
@@ -156,30 +153,32 @@ int* parents = new int[vertexCount];
 
 خروجی تست خودکار:
 
-=== Starting Auto Test ===
+     === Starting Auto Test ===
 
-Adding podcasts 0-6...
-Adding connections between podcasts...
+      Adding podcasts 0-6...
+      Adding connections between podcasts...
 
-Finding shortest paths from Podcast 0:
-----------------------------------------
-To Podcast | Distance | Path
-----------------------------------------
-     1     |    2     | 0 -> 1
-     2     |    3     | 0 -> 1 -> 2
-     3     |    9     | 0 -> 1 -> 3
-     4     |    6     | 0 -> 1 -> 2 -> 4
-     5     |    11    | 0 -> 1 -> 2 -> 4 -> 6 -> 5
-     6     |    8     | 0 -> 1 -> 2 -> 4 -> 6
+      Finding shortest paths from Podcast 0:
 
-=== Auto Test Completed ===
+    To Podcast | Distance | Path
 
-EchoVerse-2/
-├── Graph.h           # رابط کلاس گراف
-├── Graph.cpp         # پیاده‌سازی گراف و دایکسترا
-├── main.cpp          # رابط کاربری و تست
-├── README.md         # مستندات پروژه
+         1     |    2     | 0 -> 1
+         2     |    3     | 0 -> 1 -> 2
+         3     |    9     | 0 -> 1 -> 3
+         4     |    6     | 0 -> 1 -> 2 -> 4
+         5     |    11    | 0 -> 1 -> 2 -> 4 -> 6 -> 5
+         6     |    8     | 0 -> 1 -> 2 -> 4 -> 6
 
-توسعه دهنده: مجتبی فهیم پور
+      === Auto Test Completed ===
+
+ساختار فایل ها:
+
+      EchoVerse-2/
+      ├── Graph.h           # رابط کلاس گراف
+      ├── Graph.cpp         # پیاده‌سازی گراف و دایکسترا
+      ├── main.cpp          # رابط کاربری و تست
+      ├── README.md         # مستندات پروژه
+
+توسعه دهندگان: مجتبی فهیم پور،امیر گریوانی 
 
 درس: ساختمان داد ها و الگوریتم
